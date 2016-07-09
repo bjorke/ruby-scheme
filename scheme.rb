@@ -30,7 +30,7 @@ def eval (exp, env)
   elsif Application.application(exp)
     return exp
 
-  if Apply.apply(procedure, arguments))
+  if Apply.apply(procedure, arguments)
     return exp
   end
   else

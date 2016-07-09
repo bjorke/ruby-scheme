@@ -7,6 +7,7 @@ require "./lib/is_lambda"
 require "./lib/quoted"
 require "./lib/self_evaluating"
 require "./lib/variable"
+require "./lib/apply"
 
 file = File.open("schemeStuff.scm", "r")
 contents = file.read
@@ -14,35 +15,29 @@ contents = file.read
 def eval (exp, env)
   if Self_evaluating.self_evaluating(exp) #checks if it is a double/number
     return exp
-  end
-  if Quoted.quoted(exp)
+  elsif Quoted.quoted(exp)
     return exp
-  end
-  if Variable.variable(exp)
+  elsif Variable.variable(exp)
     return exp
-  end
-  if Definition.definition(exp)
+  elsif Definition.definition(exp)
     return exp
-  end
-  if Assignment.assignment(exp)
+  elsif Assignment.assignment(exp)
     return exp
-  end
-  if Is_lambda.is_lambda(exp)
+  elsif Is_lambda.is_lambda(exp)
     return exp
-  end
-  if Conditional.conditional(exp)
+  elsif Conditional.conditional(exp)
     return exp
-  end
-  if Application.application(exp)
+  elsif Application.application(exp)
     return exp
-  end
 
-
-  return "TF"
+  if Apply.apply(exp)
+    return exp
+  end
+  else
+    return "TF"
+  end
 end
 
-def apply(procedure, arguments)
-  return false
-end
+
 
 puts eval(contents,0)

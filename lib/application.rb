@@ -1,5 +1,5 @@
 module Application
   def self.application(exp)
-    return false
+    return true
   end
 end

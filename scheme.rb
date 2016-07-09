@@ -30,11 +30,11 @@ def eval (exp, env)
   elsif Application.application(exp)
     return exp
 
-  if Apply.apply(exp)
+  if Apply.apply(procedure, arguments))
     return exp
   end
   else
-    return "TF"
+    return "TF" #Something is not correct here....
   end
 end
 
